@@ -14,13 +14,29 @@
 </template>
 
 <script>
+import { useStore } from "vuex";
+import { onMounted, watchEffect, computed } from "vue";
 import TodoInput from "./components/TodoInput/TodoInput.vue";
 import TodoList from "./components/TodoList/TodoList.vue";
+import { storage } from "./Storage/storage";
 
 export default {
   components: {
     TodoInput,
     TodoList,
+  },
+  setup() {
+    const store = useStore();
+
+    onMounted(() => {
+      store.dispatch("loadTodo", storage.LoadTodos());
+      watchEffect(() => {
+        storage.StoreTodos(store.state.todos);
+      });
+    });
+    return {
+      todosLength: computed(() => store.state.todos.length),
+    };
   },
 };
 </script>

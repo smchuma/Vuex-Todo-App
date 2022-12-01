@@ -1,8 +1,8 @@
 export const todoActions = {
-  loadTodo: ({ commit }, todos) => commit("load", { todos }),
-  addTodo: ({ commit }, title) => commit("add", { title }),
-  removeTodo: ({ commit }, id) => commit("remove", { id }),
-  updateTodo: ({ commit }, payload) => commit("update", payload),
+  loadTodo: ({ commit }, todos) => commit("loadTodo", { todos }),
+  addTodo: ({ commit }, title) => commit("addTodo", { title }),
+  removeTodo: ({ commit }, id) => commit("removeTodo", { id }),
+  updateTodo: ({ commit }, payload) => commit("updateTodo", payload),
   completeAll: ({ commit }) => commit("completeAll"),
   clearCompleted: ({ commit }) => commit("clearCompleted"),
 };

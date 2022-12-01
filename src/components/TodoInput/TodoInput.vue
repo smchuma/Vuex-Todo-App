@@ -7,7 +7,7 @@
         placeholder="Create a new todo"
         :value="title"
         @input="handleChange"
-        @keydown="handleSubmit"
+        @keyup="handleSubmit"
       />
     </div>
   </div>
@@ -27,12 +27,13 @@ export default {
     const handleChange = (e) => (state.title = e.target.value);
     const handleSubmit = (e) => {
       e.preventDefault();
-      if (e.key !== "enter") {
+      if (e.key !== "Enter") {
         return;
       }
       store.dispatch("addTodo", state.title);
       state.title = "";
     };
+
     return {
       ...toRefs(state),
       handleChange,
