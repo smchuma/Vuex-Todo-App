@@ -7,7 +7,8 @@
       </header>
       <main>
         <TodoInput />
-        <TodoList />
+        <TodoList v-if="todosLength" />
+        <TodoFooter v-if="todosLength" />
       </main>
     </div>
   </div>
@@ -18,12 +19,14 @@ import { useStore } from "vuex";
 import { onMounted, watchEffect, computed } from "vue";
 import TodoInput from "./components/TodoInput/TodoInput.vue";
 import TodoList from "./components/TodoList/TodoList.vue";
+import TodoFooter from "./components/TodoFooter/TodoFooter.vue";
 import { storage } from "./Storage/storage";
 
 export default {
   components: {
     TodoInput,
     TodoList,
+    TodoFooter,
   },
   setup() {
     const store = useStore();

@@ -8,11 +8,11 @@ export function selectNotCompleted(todos) {
 
 export function selectVisible(todos, filter) {
   switch (filter) {
-    case "all":
+    case "All":
       return [...todos];
-    case "completed":
+    case "Completed":
       return selectCompleted(todos);
-    case "active":
+    case "Active":
       return selectNotCompleted(todos);
     default:
       return [...todos];
