@@ -5,4 +5,5 @@ export const todoActions = {
   updateTodo: ({ commit }, payload) => commit("updateTodo", payload),
   completeAll: ({ commit }) => commit("completeAll"),
   clearCompleted: ({ commit }) => commit("clearCompleted"),
+  filterSelect: ({ commit }, filter) => commit("filterSelect", { filter }),
 };

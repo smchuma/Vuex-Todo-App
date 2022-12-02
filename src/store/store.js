@@ -13,5 +13,5 @@ const actions = {
   ...todoActions,
 };
 
-export const store = (state = { todos: [] }) =>
+export const store = (state = { todos: [], filter: "All" }) =>
   createVuexStore({ state, actions, mutations, getters });

@@ -2,31 +2,12 @@
   <div class="todo-footer">
     <span class="count"> {{ itemsLeft }} items left </span>
     <ul class="btn">
-      <li class="active">
+      <li v-for="filterTitle in filterTitles" :key="filterTitle.key">
         <a
-          href="#"
-          class="all-btn"
-          :class="{ selected: visibility == 'all' }"
-          @click.prevent="visibility = 'all'"
-          >All</a
-        >
-      </li>
-      <li>
-        <a
-          href="#"
-          class="active-btn"
-          :class="{ selected: visibility === 'active' }"
-          @click.prevent="visibility = 'active'"
-          >Active</a
-        >
-      </li>
-      <li>
-        <a
-          href="#"
-          class="completed-btn"
-          :selected="{ selected: visibility == 'completed' }"
-          @click.prevent="visibility = 'completed'"
-          >Completed</a
+          href="./#"
+          :class="{ selected: filterTitle.key === filter }"
+          @click="handleSelect(filterTitle.key)"
+          >{{ filterTitle.value }}</a
         >
       </li>
     </ul>
@@ -50,7 +31,7 @@ export default {
       { key: "Completed", value: "Completed" },
     ];
     const handleComplete = () => store.dispatch("clearCompleted");
-    const filterSelect = (filter) => store.dispatch("filterSelect", filter);
+    const handleSelect = (filter) => store.dispatch("filterSelect", filter);
 
     return {
       filterTitles,
@@ -61,7 +42,7 @@ export default {
         store.getters.itemsLeft === 1 ? " item" : " items"
       ),
       handleComplete,
-      filterSelect,
+      handleSelect,
     };
   },
 };

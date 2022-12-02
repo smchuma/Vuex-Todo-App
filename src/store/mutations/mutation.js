@@ -1,8 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { selectCompleted, selectNotCompleted } from "../getters/getters";
-
-const areAllCompleted = (state) =>
-  state.length && selectCompleted(state).length === state.length;
+import { selectNotCompleted } from "../getters/getters";
 
 export const todoMutations = {
   loadTodo: (state, { todos }) => (state.todos = todos),
@@ -14,11 +11,6 @@ export const todoMutations = {
     )),
   removeTodo: (state, { id }) =>
     (state.todos = state.todos.filter((todo) => todo.id !== id)),
-  completeAll: (state) => {
-    state.todos = state.todos.map((todo) => ({
-      ...todo,
-      ...{ completed: !areAllCompleted(state) },
-    }));
-  },
+  filterSelect: (state, { filter }) => (state.filter = filter),
   clearCompleted: (state) => (state.todos = selectNotCompleted(state.todos)),
 };
