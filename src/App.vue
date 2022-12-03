@@ -3,7 +3,10 @@
     <div class="todo-container">
       <header class="header">
         <h1>TODO</h1>
-        <img src="./assets/ICON-MOON.SVG" />
+        <div class="mode">
+          <img src="./assets/ICON-MOON.SVG" v-if="dark" @click="toggle" />
+          <img src="./assets/ICON-SUN.SVG" v-else @click="toggle = !toggle" />
+        </div>
       </header>
       <main>
         <TodoInput />
@@ -15,7 +18,7 @@
 </template>
 
 <script>
-import { useStore } from "vuex";
+import { useStore, mapGetters, mapMutations } from "vuex";
 import { onMounted, watchEffect, computed } from "vue";
 import TodoInput from "./components/TodoInput/TodoInput.vue";
 import TodoList from "./components/TodoList/TodoList.vue";
@@ -30,15 +33,19 @@ export default {
   },
   setup() {
     const store = useStore();
-
+    const toggle = mapMutations(["SET_DARK"]);
     onMounted(() => {
       store.dispatch("loadTodo", storage.LoadTodos());
       watchEffect(() => {
         storage.StoreTodos(store.state.todos);
       });
     });
+    const dark = computed(() => mapGetters(["dark"]));
+
     return {
       todosLength: computed(() => store.state.todos.length),
+      dark,
+      toggle,
     };
   },
 };

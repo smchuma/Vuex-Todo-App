@@ -13,4 +13,5 @@ export const todoMutations = {
     (state.todos = state.todos.filter((todo) => todo.id !== id)),
   filterSelect: (state, { filter }) => (state.filter = filter),
   clearCompleted: (state) => (state.todos = selectNotCompleted(state.todos)),
+  SET_DARK: (state, bool) => (state.dark = bool),
 };

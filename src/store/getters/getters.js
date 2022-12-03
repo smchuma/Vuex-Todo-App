@@ -25,4 +25,5 @@ export const getters = {
     state.todos.length && state.todos.every((todo) => todo.completed),
   itemsLeft: (state) => selectNotCompleted(state.todos).length,
   completedCount: (state) => selectCompleted(state.todos).length,
+  dark: (state) => state.dark,
 };
